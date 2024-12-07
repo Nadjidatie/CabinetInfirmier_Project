@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/actes"
+        targetNamespace="http://univ-grenoble-alpes.fr/l3miage/actes"
+        elementFormDefault="qualified">
+
+    <!-- Déclaration de l'élément racine -->
+    <xs:element name="ngap" type="ac:Ngap" >
+    
+       <!-- <unique name="uniqueActe">
+            <selector xpath="ac: actes/ac:acte" />
+            <field xpath="@id" />
+        </unique>
+        
+        <keyref name = "idExist" refer="ac:uniqueType">
+            <selector xpath="ac:acte/ac:acte" />
+            <xs:field xpath="@id" />
+        </keyref>
+        -->
+    </xs:element>
+
+    <!-- Définition des types complexes -->
+
+    <!-- Le type Ngap contient les types et les actes -->
+    <xs:complexType name="Ngap">
+        <xs:sequence>
+            <xs:element name="types" type="ac:Types" />
+            <xs:element name="actes" type="ac:Actes" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Le type Types contient une liste de Type -->
+    <xs:complexType name="Types">
+        <xs:sequence>
+            <xs:element name="type" type="ac:Type" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Le type Actes contient une liste d'Acte -->
+    <xs:complexType name="Actes">
+        <xs:sequence>
+            <xs:element name="acte" type="ac:Acte" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Le type Type représente un type d'acte avec un attribut id et un texte descriptif -->
+    <xs:complexType name="Type">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="ac:TypeId" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Le type Acte représente un acte médical avec des attributs spécifiques -->
+    <xs:complexType name="Acte">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:string" use="required" />
+                <xs:attribute name="type" type="ac:TypeId" use="required" />
+                <xs:attribute name="clé" type="ac:Cle" use="required" />
+                <xs:attribute name="coef" type="ac:Coef" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Définition des types simples pour les attributs spécifiques -->
+
+    <!-- TypeId : restriction sur le type de l'id du type (pi, pc, pl, sd) -->
+    <xs:simpleType name="TypeId">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="pi" />
+            <xs:enumeration value="pc" />
+            <xs:enumeration value="pl" />
+            <xs:enumeration value="sd" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Cle : restriction sur le type de clé (AMI, AIS, DI) -->
+    <xs:simpleType name="Cle">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AMI" />
+            <xs:enumeration value="AIS" />
+            <xs:enumeration value="DI" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Coef : restriction sur le coefficient avec une valeur minimale de 0.0 -->
+    <xs:simpleType name="Coef">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0.0" />
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

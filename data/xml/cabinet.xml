@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cabinet 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://univ-grenoble-alpes/fr/l3miage/medical"
+        xsi:schemaLocation="http://univ-grenoble-alpes/fr/l3miage/medical ../xsd/cabinet_2-0.xsd"
+>
+    <nom>Soins à Grenoble</nom>
+    <adresse>
+        <numero>60</numero>
+        <rue>rue de la Chimie</rue>
+        <codePostal>38041</codePostal>
+        <ville>Grenoble</ville>
+    </adresse>
+    <infirmiers>
+        <infirmier id="001">
+            <nom>Fréchie</nom>
+            <prenom>Sarah</prenom>
+            <photo>sarah.png</photo>
+        </infirmier>
+        <infirmier id="002">
+            <nom>Stické</nom>
+            <prenom>Sophie</prenom>
+            <photo>sophie.jpg</photo>
+        </infirmier>
+        <infirmier id="003">
+            <nom>Ochon</nom>
+            <prenom>Paul</prenom>
+            <photo>paul.png</photo>
+        </infirmier>
+    </infirmiers>
+    <patients>
+        
+        <patient>
+            <nom>Orouge</nom>
+            <prenom>Elvire</prenom>
+            <sexe>F</sexe>
+            <naissance>1982-03-08</naissance>
+            <numero>123467891234123</numero>
+            <visite date="2015-12-08" intervenant="001">
+                <acte id="101" type="pl" cle="AMI" coef="3">
+                    Pansement de brûlure étendue
+                </acte>
+            </visite>
+            <adresse>
+                <rue>Rond-Point de la Croix de Vie</rue>
+                <codePostal>38700</codePostal>
+                <ville>La Tronche</ville>
+            </adresse>
+        </patient>
+        
+        <patient>
+            <nom>Pien</nom>
+            <prenom>Oscare</prenom>
+            <sexe>F</sexe>
+            <naissance>1975-03-25</naissance>
+            <numero>123467891234126</numero>
+            <visite date="2015-12-08" intervenant="001">
+                <acte id="101" type="pi" cle="AMI" coef="1.5">
+                    Ponction veineuse directe
+                </acte>
+                <acte id="102" type="pi" cle="AMI" coef="4">
+                    Injection intraveineuse directe isolée d'anthalgiques
+                </acte>
+            </visite>
+            <adresse>
+                <rue>rue Casimir Brenier</rue>
+                <codePostal>38000</codePostal>
+                <ville>Grenoble</ville>
+            </adresse>
+        </patient>
+
+        <patient>
+            <nom>Kapoetla</nom>
+            <prenom>Xavier</prenom>
+            <sexe>M</sexe>
+            <naissance>2011-08-02</naissance>
+            <numero>123467891234126</numero>
+            <visite date="2015-12-08" intervenant="002">
+                <acte id="101" type="pi" cle="AIS" coef="3.5">
+                    Injection d'allergènes
+                </acte>
+            </visite>
+            <adresse>
+                <rue>25 rue des Martyrs</rue>
+                <codePostal>38042</codePostal>
+                <ville>Grenoble</ville>
+            </adresse>
+        </patient>
+        
+    </patients>
+</cabinet>

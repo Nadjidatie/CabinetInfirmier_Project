@@ -1,0 +1,95 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Container principal */
+.container {
+    max-width: 1000px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* En-tête */
+.header {
+    background-color: #2a2e85;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    margin-right: 20px;
+}
+
+/* Informations de l'en-tête */
+.header-info h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.header-info h2 {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
+
+/* Section principale */
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+
+.column-left, .column-right {
+    flex: 1 1 48%;
+}
+
+/* Titres */
+.section-title {
+    font-size: 1.4em;
+    color: #333;
+    border-left: 5px solid #4c54af;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #4c56af;
+    color: white;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #f0f2f5;
+    color: #888;
+}
