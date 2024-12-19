@@ -13,7 +13,7 @@
     <XmlFile url="file://$PROJECT_DIR$/data/xml/cabinet.xml" />
     <parameters />
     <OutputType value="STDOUT" save-to-file="true" />
-    <FileType name="HTML" />
+    <FileType name="XML" />
     <JdkChoice value="FROM_MODULE" />
     <method v="2" />
   </configuration>

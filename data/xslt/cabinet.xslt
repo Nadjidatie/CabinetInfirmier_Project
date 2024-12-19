@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
-                xmlns:xs="http://www.w3.org/1999/xhtml">
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://univ-grenoble-alpes/fr/l3miage/medical">
 
     <xsl:variable name="Intervenant" select="'001'"/>
 
@@ -11,8 +12,8 @@
             </head>
             <body>
                 <h1>CONSULTATION</h1>
-                Bonjour Sarah, aujourd'hui vous avez
-                <xsl:value-of select="count(//xs:cabinet//xs:patients//xs:patient[xs:visite[@intervenant=$Intervenant]])"/> patients.
+                Bonjour <xsl:value-of select="//xs:infirmiers/xs:infirmier[@intervenant=$Intervenant]", aujourd'hui vous avez
+                <xsl:value-of select="count(xs:cabinet/xs:patients/xs:patient/xs:visite[@intervenant=$Intervenant])"/> patients.
                 <br/>
                 <table border="1">
                     <thead>
@@ -27,15 +28,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <xsl:for-each select="//xs:cabinet//xs:patients//xs:patient[xs:visite[@intervenant=$Intervenant]]">
+                        <xsl:for-each select="xs:cabinet/xs:patients/xs:patient[xs:visite[@intervenant=$Intervenant]]">
                             <tr>
-                                <td><xsl:value-of select="xs:nom"/></td>
-                                <td><xsl:value-of select="xs:prenom"/></td>
-                                <td><xsl:value-of select="xs:sexe"/></td>
-                                <td><xsl:value-of select="xs:date_naissance"/></td>
-                                <td><xsl:value-of select="xs:numéro"/></td>
-                                <td><xsl:value-of select="xs:visite/@type"/></td>
-                                <td><xsl:value-of select="xs:visite/@date"/></td>
+                                <td><xsl:value-of select="//xs:nom"/></td>
+                                <td><xsl:value-of select="//xs:prenom"/></td>
+                                <td><xsl:value-of select="//xs:sexe"/></td>
+                                <td><xsl:value-of select="//xs:date_naissance"/></td>
+                                <td><xsl:value-of select="//xs:numéro"/></td>
+                                <td><xsl:value-of select="//xs:visite/@type"/></td>
+                                <td><xsl:value-of select="//xs:visite/@date"/></td>
                             </tr>
                         </xsl:for-each>
                     </tbody>
