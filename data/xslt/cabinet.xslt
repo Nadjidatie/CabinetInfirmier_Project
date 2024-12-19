@@ -18,7 +18,7 @@
                 <script type="text/javascript" src="../js/facture.js"></script>
             </head>
             <body>
-                <h1>CONSULTATION DU JOUR</h1>
+                <h1>CONSULTATION DU JOUR (fiche infirmier)</h1>
                 <p>
                     Bonjour <xsl:value-of select="xs:cabinet/xs:infirmiers/xs:infirmier[@id=$Intervenant]/xs:prenom"/>
                     , aujourd'hui vous avez
