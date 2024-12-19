@@ -8,10 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="data\js\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Update="data\xslt\cabinet.xslt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
