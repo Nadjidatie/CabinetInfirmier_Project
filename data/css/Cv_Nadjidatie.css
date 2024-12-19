@@ -20,7 +20,7 @@ body {
 
 /* En-tête */
 .header {
-    background-color: #f6e37e; /* Couleur de fond */
+    background-color: #005f8b; /* Couleur de fond */
     color: #ffffff;
     padding: 20px;
     display: flex;
@@ -28,13 +28,14 @@ body {
 }
 
 .profile-pic {
-    width: 150px; /* Taille de l'image */
-    height: 150px;
-    border-radius: 80%; /* Image ronde */
+    width: 300px; /* Taille  */
+    height: 200px;
+    border-radius: 5%; /* Pas d'arrondi pour un carré */
     object-fit: cover; /* Cadrage adapté */
-    border: 3px solid #ffffff; /* Bordure blanche */
+    border: 3px solid #005f8b; /* Bordure blanche */
     margin-right: 20px; /* Espacement entre image et texte */
 }
+
 
 .header-info h1 {
     margin: 0;
@@ -61,7 +62,7 @@ body {
 .section-title {
     font-size: 1.4em;
     color: #333;
-    border-left: 5px solid #ffe041;
+    border-left: 5px solid #005f8b;
     padding-left: 10px;
     margin-bottom: 10px;
 }
@@ -80,7 +81,7 @@ th, td {
 }
 
 th {
-    background-color: #f6e37e;
+    background-color: #005f8b;
     color: white;
 }
 
