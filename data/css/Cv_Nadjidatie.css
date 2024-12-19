@@ -20,7 +20,7 @@ body {
 
 /* En-tête */
 .header {
-    background-color: #2a2e85;
+    background-color: #f6e37e; /* Couleur de fond */
     color: #ffffff;
     padding: 20px;
     display: flex;
@@ -28,15 +28,14 @@ body {
 }
 
 .profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffffff;
-    margin-right: 20px;
+    width: 150px; /* Taille de l'image */
+    height: 150px;
+    border-radius: 80%; /* Image ronde */
+    object-fit: cover; /* Cadrage adapté */
+    border: 3px solid #ffffff; /* Bordure blanche */
+    margin-right: 20px; /* Espacement entre image et texte */
 }
 
-/* Informations de l'en-tête */
 .header-info h1 {
     margin: 0;
     font-size: 1.8em;
@@ -59,11 +58,10 @@ body {
     flex: 1 1 48%;
 }
 
-/* Titres */
 .section-title {
     font-size: 1.4em;
     color: #333;
-    border-left: 5px solid #2a2e85;
+    border-left: 5px solid #ffe041;
     padding-left: 10px;
     margin-bottom: 10px;
 }
@@ -82,7 +80,7 @@ th, td {
 }
 
 th {
-    background-color: #2a2e85;
+    background-color: #f6e37e;
     color: white;
 }
 
@@ -93,3 +91,4 @@ th {
     background-color: #f0f2f5;
     color: #888;
 }
+

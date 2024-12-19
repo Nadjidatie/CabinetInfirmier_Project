@@ -1,249 +1,48 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xs:schema
-        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:cb="http://univ-grenoble-alpes/fr/l3miage/medical"
-        targetNamespace="http://univ-grenoble-alpes/fr/l3miage/medical"
-        elementFormDefault="qualified"
->
-    <!-- ........................xs:element racine....................... -->
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+                xmlns:xs="http://www.w3.org/1999/xhtml">
 
-    <!--
-        On déclare un élément cabinet qui sera la racine de notre instance xml.
-        Il est de type Cabinet qui est un xs:complexType
-    -->
-    <xs:element name="cabinet" type="cb:Cabinet" />
+    <xsl:variable name="Intervenant" select="'001'"/>
 
-    <!-- .........................TYPES................................ -->
+    <xsl:template match="/">
+        <html>
+            <head>
+                <title>Cabinet d'infirmière</title>
+            </head>
+            <body>
+                <h1>CONSULTATION</h1>
+                Bonjour Sarah, aujourd'hui vous avez
+                <xsl:value-of select="count(//xs:cabinet//xs:patients//xs:patient[xs:visite[@intervenant=$Intervenant]])"/> patients.
+                <br/>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Sexe</th>
+                            <th>Date de naissance</th>
+                            <th>Numéro</th>
+                            <th>Visite</th>
+                            <th>Date de visite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <xsl:for-each select="//xs:cabinet//xs:patients//xs:patient[xs:visite[@intervenant=$Intervenant]]">
+                            <tr>
+                                <td><xsl:value-of select="xs:nom"/></td>
+                                <td><xsl:value-of select="xs:prenom"/></td>
+                                <td><xsl:value-of select="xs:sexe"/></td>
+                                <td><xsl:value-of select="xs:date_naissance"/></td>
+                                <td><xsl:value-of select="xs:numéro"/></td>
+                                <td><xsl:value-of select="xs:visite/@type"/></td>
+                                <td><xsl:value-of select="xs:visite/@date"/></td>
+                            </tr>
+                        </xsl:for-each>
+                    </tbody>
+                </table>
+                <button onclick="window.open('CabinetInfirmier/data/html/cv.html', '_blank');">FACTURES</button>
+            </body>
+        </html>
+    </xsl:template>
 
-    <!--
-        Le type Cabinet est un xs:complexType composé de :
-            - nom : nom du cabinet
-            - adresse : l'adresse du cabinet
-            - infirmiers : un tableau contenant la liste des infirmiers
-            - patients : un tableau contenant la liste des patients du cabinet
-    -->
-    <xs:complexType name="Cabinet">
-        <xs:sequence>
-            <xs:element name="nom" type="xs:string" />
-            <xs:element name="adresse" type="cb:Adresse" />
-            <xs:element name="infirmiers" type="cb:Infirmiers">
-                <!-- contrainte d'unicité sur l'id des infirmiers -->
-                <xs:key name="infId">
-                    <xs:selector xpath="cb:infirmier" />
-                    <xs:field xpath="@id" />
-                </xs:key>
-            </xs:element>
-            <xs:element name="patients" type="cb:Patients">
-                <!-- contrainte d'unicité sur le numero de securité social -->
-                <!--
-                <xs:key name="patientNumSecu">
-                    <xs:selector xpath="cb:patient" />
-                    <xs:field xpath="@numero" />
-                </xs:key>
-                -->
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!--
-        Le type infirmiers contient une liste d'infirmiers.
-    -->
-    <xs:complexType name="Infirmiers">
-        <xs:sequence>
-            <xs:element name="infirmier" type="cb:Infirmier" minOccurs="1" maxOccurs="unbounded" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <!--
-       Le type patients contient une liste de patients.
-   -->
-    <xs:complexType name="Patients">
-        <xs:sequence>
-            <xs:element name="patient" type="cb:Patient" minOccurs="1" maxOccurs="unbounded">
-                <!-- contrainte d'existance de l'id de l'infirmier -->
-                <xs:keyref name="infIdExist" refer="cb:infId">
-                    <xs:selector xpath="cb:patient/cb:visite" />
-                    <xs:field xpath="@intervenant" />
-                </xs:keyref>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!--
-        Le type Adresse contient :
-            - numero : qui désigne le numero de la rue. Cet xs:element est optionel
-            - rue : qui représente le nom de la rue
-            - codePostal : qui représente le code postal de la ville
-            - ville : nom de la ville
-            - etage : etage où se situe l'appartement du patient, optionel aussi
-    -->
-    <xs:complexType name="Adresse">
-        <xs:sequence>
-            <xs:element name="numero" type="xs:nonNegativeInteger" minOccurs="0" />
-            <xs:element name="rue" type="xs:string" />
-            <xs:element name="codePostal" type="cb:CodePostal"/>
-            <xs:element name="ville" type="xs:string" />
-            <xs:element name="etage" type="xs:nonNegativeInteger" minOccurs="0"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!-- Le type CodePostal est une xs:restriction du type xs:string -->
-    <xs:simpleType name="CodePostal">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{5}" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!--
-        Le type Personne est un xs:element abstrait pour représenter des xs:elements communs
-        à patient et infirmier. Il regroupe :
-            - nom : nom de l'individu (infirmier ou patient)
-            - prenom : prenom de l'individu
-    -->
-    <xs:complexType name="Personne">
-        <xs:sequence>
-            <xs:element name="nom" type="xs:string" />
-            <xs:element name="prenom" type="xs:string" />
-        </xs:sequence>
-    </xs:complexType>
-
-    <!--
-        Le type Infirmier est un élément concret qui représente un infirmier. Il contient :
-            - nom : hérité de l'élément Personne
-            - prenom : hérité de l'élément Personne
-            - id : l'identifiant de l'infirmier dans le système
-            - photo : fichier image de l'infirmier qui est une URI
-    -->
-    <xs:complexType name="Infirmier">
-        <xs:complexContent>
-            <xs:extension base="cb:Personne">
-                <xs:sequence>
-                    <xs:element name="photo" type="xs:anyURI" />
-                </xs:sequence>
-                <xs:attribute name="id" type="xs:string" />
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <!--
-        Le type Patiemt est un élément concret qui représente un patient. Il contient :
-            - nom : hérité de l'élément Personne
-            - prenom : hérité de l'élément Personne
-            - sexe : le genre du patient (M ou F)
-            - naissance : la xs:date de naissance du patient
-            - numero : numéro de sécurité social du patient
-            - visite : représentant le nombre de visite que le patient a reçu (tableau de Visite)
-            - adresse : adresse du patient
-    -->
-    <xs:complexType name="Patient">
-        <xs:complexContent>
-            <xs:extension base="cb:Personne">
-                <xs:sequence>
-                    <xs:element name="sexe" type="cb:Sexe" />
-                    <xs:element name="naissance" type="xs:date" />
-                    <xs:element name="numero" type="cb:NumeroSecu" />
-                    <xs:element name="visite" type="cb:Visite" minOccurs="1" maxOccurs="unbounded">
-                        <!-- contrainte d'unicité sur l'id des actes -->
-                        <xs:key name="acteId">
-                            <xs:selector xpath="cb:acte" />
-                            <xs:field xpath="@id" />
-                        </xs:key>
-                    </xs:element>
-                    <xs:element name="adresse" type="cb:Adresse" />
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <!--
-        Le type Numero représente le numéro de sécurité social du patient.
-        Il est une xs:restriction du type xs:string
-    -->
-    <xs:simpleType name="NumeroSecu">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{15}" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!--
-        Le type Sexe est une xs:restriction du type xs:string.
-        C'est une énumération composée de deux valeurs : M et F
-    -->
-    <xs:simpleType name="Sexe">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="M" />
-            <xs:enumeration value="F" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!--
-        Le type Visite représente chaque visite par un infirmier chez un patient
-        Il compose un élément :
-            - acte : qui représente l'acte de NGAP des infirmiers
-        Et des attributs :
-            - xs:date : désigne la xs:date de la visite
-            - intervenant : indique l'id de l'infirmier
-    -->
-    <xs:complexType name="Visite">
-        <xs:sequence>
-            <xs:element name="acte" type="cb:Acte" minOccurs="1" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="date" type="xs:date" use="required" />
-        <xs:attribute name="intervenant" type="xs:string" use="required" />
-    </xs:complexType>
-
-    <!--
-        Le type Acte désigne l'acte des infirmiers da la NGAP et contient des attributs
-        avec un simple texte à l'intérieur :
-            - id : représente l'id de l'acte
-            - type : une xs:restriction de type xs:string
-            - cle : la lettre-clé de l'acte
-            - coef : le coefficient de l'acte
-    -->
-    <xs:complexType name="Acte">
-        <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute name="id" type="xs:string" use="required" />
-                <xs:attribute name="type" type="cb:Type" use="required" />
-                <xs:attribute name="cle" type="cb:Cle" use="required" />
-                <xs:attribute name="coef" type="cb:Coef" use="required" />
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-
-    <!--
-        Type est une xs:restriction du xs:string pour représenter quelques valeurs
-        permettant de typer le type de l'acte
-    -->
-    <xs:simpleType name="Type">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="pi" />
-            <xs:enumeration value="pc" />
-            <xs:enumeration value="pl" />
-            <xs:enumeration value="sd" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!--
-        Le type Cle est une xs:restriction de xs:string pour représenter les
-        différentes lettres-clés de l'acte
-    -->
-    <xs:simpleType name="Cle">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="AMI" />
-            <xs:enumeration value="AIS" />
-            <xs:enumeration value="DI" />
-        </xs:restriction>
-    </xs:simpleType>
-
-    <!--
-        Le type Coef est une xs:restriction de xs:decimal qui commence à
-        partir de 0 pour éliminer les valeurs négatives
-    -->
-    <xs:simpleType name="Coef">
-        <xs:restriction base="xs:decimal">
-            <xs:minExclusive value="0.0" />
-        </xs:restriction>
-    </xs:simpleType>
-
-</xs:schema>
+</xsl:stylesheet>
