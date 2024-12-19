@@ -15,11 +15,12 @@
             <head>
                 <title>Liste des visites</title>
                 <link rel="stylesheet" href="../css/cabinet.css"/>
+                <script type="text/javascript" src="../js/facture.js"></script>
             </head>
             <body>
                 <h1>CONSULTATION DU JOUR</h1>
                 <p>
-                    <xsl:value-of select="concat('Bonjour ', xs:cabinet/xs:infirmiers/xs:infirmier[@id=$Intervenant]/xs:prenom)"/>
+                    Bonjour <xsl:value-of select="xs:cabinet/xs:infirmiers/xs:infirmier[@id=$Intervenant]/xs:prenom"/>
                     , aujourd'hui vous avez
                     <xsl:value-of select="count(xs:cabinet/xs:patients/xs:patient/xs:visite[@intervenant=$Intervenant])"/> patients.
                 </p>
@@ -33,6 +34,7 @@
                             <th>Adresse</th>
                             <th>Date de la visite</th>
                             <th>Soins à effectuer</th>
+                            <th>Facture</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +58,7 @@
                                     <xsl:value-of select="xs:adresse/xs:ville"/>
                                 </td>
 
-                                <!-- Date de la visite du patient -->
+                                <!-- Date de la visite du patient trier-->
                                 <td>
                                     <xsl:value-of select="xs:visite/@date"/>
                                 </td>
@@ -64,12 +66,19 @@
                                 <!-- Liste des soins à effectuer -->
                                 <td>
                                     <xsl:for-each select="xs:visite/xs:acte">
-                                        <xsl:value-of select="concat('• ', 
-                                            $actes//acte[@id=current()/@id]/text())"/>
+                                        •<xsl:value-of select="$actes//acte[@id=current()/@id]/text()"/>
                                         <br/>
                                     </xsl:for-each>
                                 </td>
-
+                                <td>
+                                    <xsl:element name="button">
+                                        <xsl:attribute name="onclick">
+                                            <xsl:value-of select="concat('openFacture(', xs:prenom, ', ', xs:nom, ', ', 
+                                             concat(xs:visite/xs:acte, ' '), ')')"/>
+                                        </xsl:attribute>
+                                        Facture
+                                    </xsl:element>
+                                </td>
                             </tr>
                         </xsl:for-each>
                     </tbody>

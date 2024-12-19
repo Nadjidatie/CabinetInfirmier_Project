@@ -3,10 +3,12 @@
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Liste des visites</title>
         <link rel="stylesheet" href="../css/cabinet.css">
+        <script type="text/javascript" src="../js/facture.js"></script>
     </head>
     <body>
         <h1>CONSULTATION DU JOUR</h1>
-        <p>Bonjour Sarah
+        <p>
+                    Bonjour Sarah
                     , aujourd'hui vous avez
                     2 patients.
                 </p>
@@ -14,31 +16,41 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nom</th><th>Pr&eacute;nom</th><th>Adresse</th><th>Date de la visite</th><th>Soins &agrave; effectuer</th>
+                    <th>Nom</th><th>Pr&eacute;nom</th><th>Adresse</th><th>Date de la visite</th><th>Soins &agrave; effectuer</th><th>Facture</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Orouge</td><td>Elvire</td><td> Rond-Point de la Croix de Vie
                         <br>
-                         La Tronche</td><td>2015-12-08</td><td>&bull; 
+                         La Tronche</td><td>2015-12-08</td><td>
+                                        &bull;
             Pr&eacute;l&egrave;vement par ponction veineuse directe
         
                         <br>
-                    </td>
+                    </td><td><button onclick="openFacture(Elvire, Orouge, 
+                    Pansement de br&ucirc;lure &eacute;tendue
+                 )">
+                                        Facture
+                                    </button></td>
                 </tr>
                 <tr>
                     <td>Pien</td><td>Oscare</td><td> rue Casimir Brenier
                         <br>
-                         Grenoble</td><td>2018-12-08</td><td>&bull; 
+                         Grenoble</td><td>2018-12-08</td><td>
+                                        &bull;
             Pr&eacute;l&egrave;vement par ponction veineuse directe
         
                         <br>
-                        &bull; 
+                                                                &bull;
             Saign&eacute;e
         
                         <br>
-                    </td>
+                    </td><td><button onclick="openFacture(Oscare, Pien, 
+                    Ponction veineuse directe
+                 )">
+                                        Facture
+                                    </button></td>
                 </tr>
             </tbody>
         </table>
