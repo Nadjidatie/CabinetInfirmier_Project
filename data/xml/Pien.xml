@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><patient xmlns:xs="http://univ-grenoble-alpes/fr/l3miage/medical" xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/actes">
+    <nom>Pien</nom>
+    <prenom>Oscare</prenom>
+    <sexe>F</sexe>
+    <naissance>1975-03-25</naissance>
+    <numero>123467891234126</numero>
+    <adresse>
+        <rue>rue Casimir Brenier</rue>
+        <codePostal>38000</codePostal>
+        <ville>Grenoble</ville>
+    </adresse>
+    <visite date="2015-12-08" intervenant="002">
+        <acte id="101" type="pi" cle="AMI" coef="1.5"/>
+        <acte id="102" type="pi" cle="AMI" coef="4"/>
+    </visite>
+</patient>

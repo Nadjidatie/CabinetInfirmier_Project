@@ -1,0 +1,87 @@
+/* Global settings */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header section */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* General Section Layout */
+section {
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section#identite,
+section#coordonnées,
+section#visite {
+    margin-bottom: 20px;
+}
+
+section p,
+section address {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+section address {
+    font-style: italic;
+    color: #555;
+}
+
+/* Styling the divs within sections */
+section div {
+    margin-left: 20px;
+}
+
+/* Special Section Styling */
+section#visite div {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 4px solid #4CAF50;
+}
+
+section#visite p {
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Optional responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    section {
+        margin: 10px;
+        padding: 10px;
+    }
+}

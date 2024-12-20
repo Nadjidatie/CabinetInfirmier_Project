@@ -6,13 +6,20 @@
         <script type="text/javascript" src="../js/facture.js"></script>
     </head>
     <body>
-        <h1>CONSULTATION DU JOUR (fiche infirmier)</h1>
-        <p>
-                    Bonjour Sarah
-                    , aujourd'hui vous avez
-                    2 patients.
-                </p>
-        <p>Voici la liste des visites pr&eacute;vues:</p>
+        <header>
+            <h1>CONSULTATION DU JOUR (Fiche Infirmier)</h1>
+            <p>
+                                        Bonjour
+                        <strong>Sarah</strong>,
+                        aujourd'hui vous avez
+                        <strong>2</strong> patients.
+                    
+            </p>
+            <div class="header-photo">
+                <img src="sarah.png" alt="Photo de l'infirmier">
+            </div>
+        </header>
+        <p>Voici la liste des visites pr&eacute;vues :</p>
         <table>
             <thead>
                 <tr>
@@ -21,10 +28,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Orouge</td><td>Elvire</td><td> Rond-Point de la Croix de Vie
-                        <br>
-                         La Tronche</td><td>2015-12-08</td><td>
-                                        &bull;
+                    <td>Orouge</td><td>Elvire</td><td> La Tronche</td><td>2015-12-08</td><td>
+                                            &bull; 
             Pr&eacute;l&egrave;vement par ponction veineuse directe
         
                         <br>
@@ -35,19 +40,13 @@
                                     </button></td>
                 </tr>
                 <tr>
-                    <td>Pien</td><td>Oscare</td><td> rue Casimir Brenier
-                        <br>
-                         Grenoble</td><td>2015-12-08</td><td>
-                                        &bull;
+                    <td>Kapoetla</td><td>Xavier</td><td> Grenoble</td><td>2015-12-08</td><td>
+                                            &bull; 
             Pr&eacute;l&egrave;vement par ponction veineuse directe
         
                         <br>
-                                                                &bull;
-            Saign&eacute;e
-        
-                        <br>
-                    </td><td><button onclick="openFacture(Oscare, Pien, 
-                    Ponction veineuse directe
+                    </td><td><button onclick="openFacture(Xavier, Kapoetla, 
+                    Injection d'allerg&egrave;nes
                  )">
                                         Facture
                                     </button></td>
