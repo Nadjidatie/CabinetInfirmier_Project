@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/actes"
-        targetNamespace="http://univ-grenoble-alpes.fr/l3miage/actes"
+        xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/acte"
+        targetNamespace="http://univ-grenoble-alpes.fr/l3miage/acte"
         elementFormDefault="qualified">
 
     <!-- Déclaration de l'élément racine -->

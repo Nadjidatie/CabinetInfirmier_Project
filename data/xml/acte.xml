@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ngap
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/actes"
-        xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/actes../xsd/actes.xsd">
+        xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/acte"
+        xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/actes../xsd/acte.xsd">
     <types>
         <type id="pi">prélèvements et injections</type>
         <type id="pc">pansements courants</type>

@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://univ-grenoble-alpes/fr/l3miage/medical"
-                xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/actes">
+                xmlns:ac="http://univ-grenoble-alpes.fr/l3miage/acte">
 
     <xsl:output method="html" indent="yes"/>
     <xsl:param name="patient" select="Pien"/>
